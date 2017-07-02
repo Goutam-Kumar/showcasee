@@ -35,4 +35,16 @@ router.post("/registerUser",function (req, res) {
 
 });
 
+router.post("/allusers",function (req, res) {
+    var response = {};
+    User.find({},function (err, data) {
+        if(err){
+            response = {message:"No user found.",status:false};
+        }else{
+            response = {message:"users found.",status:true,data:data};
+        }
+        res.json(response);
+    })
+})
+
 module.exports = router;
