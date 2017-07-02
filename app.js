@@ -10,6 +10,14 @@ var users = require('./routes/users');
 
 var app = express();
 
+//DB Connection
+var mongoose   = require('mongoose');
+//Local DB
+//mongoose.connect('mongodb://127.0.0.1:27017/showcasedb');
+
+//serverDB
+mongoose.connect('mongodb://admin:admin@ds143892.mlab.com:43892/heroku_k0hmsf60');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -18,7 +26,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
